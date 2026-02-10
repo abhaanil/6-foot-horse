@@ -1,0 +1,194 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background: #ffffff;
+}
+
+/* whole page */
+#wrapper {
+    position: relative;
+    width: 100vw;
+    /* was 100wh - invalid */
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ---------- BEHIND LAYER (WHAT YOU SHOW AFTER REVEAL) ---------- */
+
+#behind {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #ffffff00;
+}
+
+/* container for all visual layers */
+#scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* inside PNG (horse + marathi text) - ALWAYS VISIBLE, ABOVE VIDEO */
+#insideImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #ffffff00;
+    z-index: 3;
+    /* above video and horse */
+}
+
+/* horse at bottom */
+#horseImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    /* bottom */
+    pointer-events: none;
+}
+
+/* video between horse and inside image */
+#shoppingVideo {
+    position: absolute;
+    inset: 0;
+    top: 5%;
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    z-index: 2;
+    /* between horse and insideImg */
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    background: transparent;
+}
+
+#horseSadImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 2;
+    /* same level as horse */
+    opacity: 0;
+    /* hidden by default */
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+
+/* three yellow buttons on top of everything */
+#buttonRow {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 24px;
+    z-index: 6;
+}
+
+.inside-btn {
+    padding: 14px 40px;
+    border-radius: 999px;
+    border: none;
+    background: #ffd500;
+    color: #000;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+}
+
+.inside-btn:hover {
+    background: #ffea43;
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.35);
+}
+
+.inside-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- CURTAIN CARD (FRONT) ---------- */
+
+#card {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 100%;
+    max-width: 1920px;
+    overflow: hidden;
+    z-index: 10;
+    transition: transform 10s;
+    /* your slow slide */
+}
+
+/* curtain PNG */
+#heroImage {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* curtain button */
+#revealBtn {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    transform: translateX(-50%);
+    padding: 18px 60px;
+    border-radius: 999px;
+    border: none;
+    background: #ffd500;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease,
+        background 0.15s ease;
+}
+
+#revealBtn:hover {
+    background: #ffeb4d;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+}
+
+#revealBtn:active {
+    transform: translateX(-50%) translateY(1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* slide whole curtain card up and out */
+#card.slide-up {
+    transform: translateY(-120%);
+}
